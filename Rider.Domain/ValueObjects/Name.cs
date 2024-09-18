@@ -1,6 +1,7 @@
 
 
 using System.Text.RegularExpressions;
+using Rider.Domain.Exceptions;
 
 namespace Rider.Domain.ValueObjects;
 
@@ -12,7 +13,7 @@ public record Name
     {
         if (string.IsNullOrEmpty(value) || !Regex.IsMatch(value, @"^[a-zA-Z]+ [a-zA-Z]+$"))
         {
-            throw new ArgumentException("Invalid account name.");
+            throw new RiderDomainException("Invalid account name.");
         }
         Value = value;
     }

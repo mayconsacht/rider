@@ -1,4 +1,5 @@
 using Rider.Domain.Entities;
+using Rider.Domain.Exceptions;
 
 namespace Rider.Tests.Domain.Entities;
 
@@ -27,7 +28,7 @@ public class AccountTest
     public void Account_WhenInvalidName_ShouldThrowException()
     {
         //Assert
-        var ex = Assert.Throws<ArgumentException>(CreateAccount);
+        var ex = Assert.Throws<RiderDomainException>(CreateAccount);
         Assert.That(ex.Message, Is.EqualTo("Invalid account name."));
         return;
 
@@ -39,7 +40,7 @@ public class AccountTest
     public void Account_WhenInvalidEmail_ShouldThrowException()
     {
         //Assert
-        var ex = Assert.Throws<ArgumentException>(CreateAccount);
+        var ex = Assert.Throws<RiderDomainException>(CreateAccount);
         Assert.That(ex.Message, Is.EqualTo("Invalid account email format."));
         return;
 
@@ -51,7 +52,7 @@ public class AccountTest
     public void Account_WhenInvalidCarPlate_ShouldThrowException()
     {
         //Assert
-        var ex = Assert.Throws<ArgumentException>(CreateAccount);
+        var ex = Assert.Throws<RiderDomainException>(CreateAccount);
         Assert.That(ex.Message, Is.EqualTo("Invalid car plate."));
         return;
 

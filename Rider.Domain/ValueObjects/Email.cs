@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Rider.Domain.Exceptions;
 
 namespace Rider.Domain.ValueObjects;
 
@@ -10,7 +11,7 @@ public record Email
     {
         if (string.IsNullOrEmpty(value) || !Regex.IsMatch(value, @"^(.+)@(.+)$"))
         {
-            throw new ArgumentException("Invalid account email format.");
+            throw new RiderDomainException("Invalid account email format.");
         }
         Value = value;
     }

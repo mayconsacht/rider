@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Rider.Infraestructure.Database;
+using Rider.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 

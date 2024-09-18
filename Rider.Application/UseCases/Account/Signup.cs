@@ -8,7 +8,7 @@ public class Signup(IAccountRepository accountRepository) : IUseCase<AccountNoId
 {
     public async Task<Guid> Execute(AccountNoIdDto input)
     {
-        AccountEntity existingAccount = await accountRepository.GetByEmail(input.Email);
+        AccountEntity? existingAccount = await accountRepository.GetByEmail(input.Email);
         if (existingAccount != null) 
         {
             throw new Exception($"Email {input.Email} already exists");

@@ -4,14 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>Rider.CrossCutting</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Folder Include="Services\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="ValueObjects\CarPlate.cs" />
-    </ItemGroup>
 
 </Project>

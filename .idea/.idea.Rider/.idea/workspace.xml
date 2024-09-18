@@ -9,23 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcfb67c2-6642-45c7-ad8b-9cfc9f05b899" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Rider.Application/Repositories/IAccountRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rider.Application/UseCases/Account/GetAccount.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rider.Application/UseCases/Account/Signup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rider.Application/UseCases/IUseCase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rider.CrossCutting/DTO/Account/AccountNoIdDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rider.CrossCutting/Rider.CrossCutting.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rider.Domain/Entities/Account.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rider.Domain/ValueObjects/Email.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rider.Domain/ValueObjects/Name.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rider.Infraestructure/Database/RiderDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rider.Infraestructure/Repositories/AccountRespository.cs" afterDir="false" />
+    <list default="true" id="dcfb67c2-6642-45c7-ad8b-9cfc9f05b899" name="Changes" comment="chore: add unversioned files">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Rider/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Rider/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rider.Application/Rider.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rider.Application/Rider.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rider.Domain/Rider.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rider.Domain/Rider.Domain.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rider.Infraestructure/Rider.Infraestructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rider.Infraestructure/Rider.Infraestructure.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rider.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Rider.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +135,7 @@
       <option name="presentableId" value="Default" />
       <updated>1726540901827</updated>
       <workItem from="1726540902871" duration="22818000" />
-      <workItem from="1726625894605" duration="7782000" />
+      <workItem from="1726625894605" duration="9196000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -200,7 +185,23 @@
       <option name="project" value="LOCAL" />
       <updated>1726543234415</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: its possible get account and signup">
+      <option name="closed" value="true" />
+      <created>1726636081849</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726636081849</updated>
+    </task>
+    <task id="LOCAL-00008" summary="chore: add unversioned files">
+      <option name="closed" value="true" />
+      <created>1726636120665</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1726636120665</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,7 +215,9 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="structure default" />
     <MESSAGE value="merge from main" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge from main" />
+    <MESSAGE value="feat: its possible get account and signup" />
+    <MESSAGE value="chore: add unversioned files" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add unversioned files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -231,6 +234,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Rider.Application/UseCases/Account/Signup.cs</url>
+          <line>10</line>
+          <properties documentPath="$PROJECT_DIR$/Rider.Application/UseCases/Account/Signup.cs" containingFunctionPresentation="Method 'Execute'">
+            <startOffsets>
+              <option value="336" />
+            </startOffsets>
+            <endOffsets>
+              <option value="416" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

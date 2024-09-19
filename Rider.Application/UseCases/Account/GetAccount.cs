@@ -1,15 +1,18 @@
-using Application.Repositories;
+using Rider.Application.Repositories;
 using Rider.CrossCutting.DTO.Account;
-
 using AccountEntity = Rider.Domain.Entities.Account;
 
-namespace Application.UseCases.Account;
+namespace Rider.Application.UseCases.Account;
 
-public class GetAccount(IAccountRepository accountRepository) : IUseCase<Guid, Task<AccountDto>>
+public class GetAccount(IAccountRepository accountRepository) : IUseCase<Guid, Task<AccountDto?>>
 {
-    public async Task<AccountDto> Execute(Guid id)
+    public async Task<AccountDto?> Execute(Guid id)
     {
-        AccountEntity account = await accountRepository.GetById(id);
+        AccountEntity? account = await accountRepository.GetById(id);
+        if (account == null)
+        {
+            return null;
+        }
         return new AccountDto()
         {
             Id = account.Id,

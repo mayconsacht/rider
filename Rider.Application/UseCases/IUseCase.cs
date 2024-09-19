@@ -1,4 +1,4 @@
-namespace Application.UseCases;
+namespace Rider.Application.UseCases;
 
 public interface IUseCase<in T, out TResult>
 {

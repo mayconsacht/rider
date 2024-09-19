@@ -29,6 +29,6 @@ public sealed class Account : Entity
     
     public static Account Create(string name, string email, string carPlate, bool isPassenger, bool isDriver)
     {
-        return new Account(new Guid(), name, email, carPlate, isPassenger, isDriver);
+        return new Account(Guid.NewGuid(), name, email, carPlate, isPassenger, isDriver);
     }
 }

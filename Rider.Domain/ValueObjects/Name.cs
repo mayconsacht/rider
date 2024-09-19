@@ -13,7 +13,7 @@ public record Name
     {
         if (string.IsNullOrEmpty(value) || !Regex.IsMatch(value, @"^[a-zA-Z]+ [a-zA-Z]+$"))
         {
-            throw new RiderDomainException("Invalid account name.");
+            throw new AccountDomainException("Invalid account name.");
         }
         Value = value;
     }

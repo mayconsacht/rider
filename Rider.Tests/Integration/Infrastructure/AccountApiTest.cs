@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Rider.Application.UseCases.Account;
 using Rider.Infrastructure.Apis;
+using Rider.Infrastructure.Gateways;
 using Rider.Tests.Mocks.Account;
 
 namespace Rider.Tests.Integration.Infrastructure;
@@ -23,7 +24,8 @@ public class AccountApiTest : TestBase
     {
         // Arrange
         var account = AccountMock.CreateNoIdDto();
-        var service = new AccountServices(new GetAccount(AccountRepository), new Signup(AccountRepository), _loggerMock);
+        var mailer = new MailerGatewayFake();
+        var service = new AccountServices(new GetAccount(AccountRepository), new Signup(AccountRepository, mailer), _loggerMock);
         
         // Act
         var result = await AccountApi.CreateAccountAsync(account, service);

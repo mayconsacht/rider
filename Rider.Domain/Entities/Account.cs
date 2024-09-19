@@ -22,7 +22,7 @@ public sealed class Account : Entity
         IsDriver = isDriver;
         if (isDriver && string.IsNullOrEmpty(carPlate))
         {
-            throw new RiderDomainException("Invalid car plate.");
+            throw new AccountDomainException("Invalid car plate.");
         }
         CarPlate = carPlate;
     }

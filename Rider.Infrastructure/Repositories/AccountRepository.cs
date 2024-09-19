@@ -5,7 +5,7 @@ using Rider.Infrastructure.Database;
 
 namespace Rider.Infrastructure.Repositories;
 
-public class AccountRepository(RiderDbContext db) : IAccountRepository
+public class AccountRepository(AccountDbContext db) : IAccountRepository
 {
     public async Task<Account?> GetByEmail(string email)
     {

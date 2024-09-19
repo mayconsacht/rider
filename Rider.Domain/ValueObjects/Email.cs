@@ -11,7 +11,7 @@ public record Email
     {
         if (string.IsNullOrEmpty(value) || !Regex.IsMatch(value, @"^(.+)@(.+)$"))
         {
-            throw new RiderDomainException("Invalid account email format.");
+            throw new AccountDomainException("Invalid account email format.");
         }
         Value = value;
     }

@@ -20,9 +20,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Database connection
-builder.Services.AddDbContext<RiderDbContext>(options =>
+builder.Services.AddDbContext<AccountDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddSingleton<RiderDbContext>();
+builder.Services.AddSingleton<AccountDbContext>();
 
 app.Run();

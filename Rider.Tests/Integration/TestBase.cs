@@ -6,10 +6,11 @@ namespace Rider.Tests.Integration;
 
 public abstract class TestBase : IDisposable
 {
-    protected readonly RiderDbContext Context;
+    protected RiderDbContext Context;
     protected AccountRepository AccountRepository;
-
-    protected TestBase()
+    
+    [SetUp]
+    public void Setup()
     {
         var options = new DbContextOptionsBuilder<RiderDbContext>()
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
@@ -17,7 +18,7 @@ public abstract class TestBase : IDisposable
         Context = new RiderDbContext(options);
         CreateRepositories();
     }
-
+    
     private void CreateRepositories()
     {
         AccountRepository = new AccountRepository(Context);    

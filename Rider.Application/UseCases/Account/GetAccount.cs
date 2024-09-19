@@ -4,6 +4,7 @@ using AccountEntity = Rider.Domain.Entities.Account;
 
 namespace Rider.Application.UseCases.Account;
 
+// Soon to be changed to query
 public class GetAccount(IAccountRepository accountRepository) : IUseCase<Guid, Task<AccountDto?>>
 {
     public async Task<AccountDto?> Execute(Guid id)

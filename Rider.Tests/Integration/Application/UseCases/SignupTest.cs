@@ -1,16 +1,18 @@
 using Rider.Application.UseCases.Account;
 using Rider.CrossCutting.DTO.Account;
 using Rider.Domain.Exceptions;
+using Rider.Tests.Mocks.Account;
 
 namespace Rider.Tests.Integration.Application.UseCases;
 
+[TestFixture]
 public class SignupTest : TestBase
 {
     private Signup _signup;
     private GetAccount _getAccount;
     
     [SetUp]
-    public void SetupTest()
+    public void Setup()
     {
         _getAccount = new GetAccount(AccountRepository);
         _signup = new Signup(AccountRepository);
@@ -20,19 +22,12 @@ public class SignupTest : TestBase
     public async Task SignupTest_ShouldCreateNewAccount()
     {
         //Arrange
-        var account = new AccountNoIdDto
-        {
-            Name = "John Doe",
-            Email = "john.doe@gmail.com",
-            CarPlate = "MBO8765",
-            IsDriver = true,
-            IsPassenger = true
-        };
+        var account = AccountMock.CreateNoIdDto();
         
         //Act
         var accountId = await _signup.Execute(account);
         Assert.IsNotNull(accountId);
-        var newAccount = await _getAccount.Execute(accountId);
+        var newAccount = await _getAccount.Execute(accountId ?? Guid.Empty);
         
         //Assert
         Assert.IsNotNull(newAccount);
@@ -59,7 +54,7 @@ public class SignupTest : TestBase
         //Act
         var accountId = await _signup.Execute(account);
         Assert.IsNotNull(accountId);
-        var newAccount = await _getAccount.Execute(accountId);
+        var newAccount = await _getAccount.Execute(accountId ?? Guid.Empty);
         
         //Assert
         Assert.IsNotNull(newAccount);

@@ -5,16 +5,19 @@ using AccountEntity = Rider.Domain.Entities.Account;
 
 namespace Rider.Application.UseCases.Account;
 
-public class Signup(IAccountRepository accountRepository) : IUseCase<AccountNoIdDto, Task<Guid>>
+// Soon to be changed to commands
+public class Signup(IAccountRepository accountRepository) : IUseCase<AccountNoIdDto, Task<Guid?>>
 {
-    public async Task<Guid> Execute(AccountNoIdDto input)
+    public virtual async Task<Guid?> Execute(AccountNoIdDto input)
     {
         AccountEntity? existingAccount = await accountRepository.GetByEmail(input.Email);
-        if (existingAccount != null) 
+        if (existingAccount != null)
         {
             throw new RiderDomainException($"Email {input.Email} already exists");
         }
-        AccountEntity account = AccountEntity.Create(input.Name, input.Email, input.CarPlate, input.IsDriver, input.IsPassenger);
+
+        AccountEntity account = AccountEntity.Create(input.Name, input.Email, input.CarPlate, input.IsDriver,
+            input.IsPassenger);
         await accountRepository.Save(account);
         return account.Id;
     }

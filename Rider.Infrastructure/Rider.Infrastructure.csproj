@@ -19,10 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Gateways\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Rider.Application\Rider.Application.csproj" />
       <ProjectReference Include="..\Rider.Domain\Rider.Domain.csproj" />
     </ItemGroup>

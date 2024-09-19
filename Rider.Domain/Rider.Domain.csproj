@@ -10,8 +10,4 @@
       <Folder Include="Services\" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Compile Remove="ValueObjects\CarPlate.cs" />
-    </ItemGroup>
-
 </Project>

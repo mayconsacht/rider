@@ -1,6 +1,7 @@
 using Rider.Application.UseCases.Account;
 using Rider.CrossCutting.DTO.Account;
 using Rider.Domain.Exceptions;
+using Rider.Infrastructure.Gateways;
 using Rider.Tests.Mocks.Account;
 
 namespace Rider.Tests.Integration.Application.UseCases;
@@ -14,8 +15,9 @@ public class SignupTest : TestBase
     [SetUp]
     public void Setup()
     {
+        var mailer = new MailerGatewayFake();
         _getAccount = new GetAccount(AccountRepository);
-        _signup = new Signup(AccountRepository);
+        _signup = new Signup(AccountRepository, mailer);
     }
     
     [Test]
@@ -58,7 +60,7 @@ public class SignupTest : TestBase
         
         //Assert
         Assert.IsNotNull(newAccount);
-        var ex = Assert.ThrowsAsync<RiderDomainException>(async () => await _signup.Execute(account));
+        var ex = Assert.ThrowsAsync<AccountDomainException>(async () => await _signup.Execute(account));
         Assert.That(ex.Message, Is.EqualTo($"Email {account.Email} already exists"));
     }
 }

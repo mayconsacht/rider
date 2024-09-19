@@ -8,10 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Gateways\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Rider.CrossCutting\Rider.CrossCutting.csproj" />
       <ProjectReference Include="..\Rider.Domain\Rider.Domain.csproj" />
     </ItemGroup>

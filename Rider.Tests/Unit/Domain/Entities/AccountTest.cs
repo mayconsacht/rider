@@ -28,7 +28,7 @@ public class AccountTest
     public void Account_WhenInvalidName_ShouldThrowException()
     {
         //Assert
-        var ex = Assert.Throws<RiderDomainException>(CreateAccount);
+        var ex = Assert.Throws<AccountDomainException>(CreateAccount);
         Assert.That(ex.Message, Is.EqualTo("Invalid account name."));
         return;
 
@@ -40,7 +40,7 @@ public class AccountTest
     public void Account_WhenInvalidEmail_ShouldThrowException()
     {
         //Assert
-        var ex = Assert.Throws<RiderDomainException>(CreateAccount);
+        var ex = Assert.Throws<AccountDomainException>(CreateAccount);
         Assert.That(ex.Message, Is.EqualTo("Invalid account email format."));
         return;
 
@@ -52,7 +52,7 @@ public class AccountTest
     public void Account_WhenInvalidCarPlate_ShouldThrowException()
     {
         //Assert
-        var ex = Assert.Throws<RiderDomainException>(CreateAccount);
+        var ex = Assert.Throws<AccountDomainException>(CreateAccount);
         Assert.That(ex.Message, Is.EqualTo("Invalid car plate."));
         return;
 

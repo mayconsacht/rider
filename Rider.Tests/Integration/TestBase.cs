@@ -2,28 +2,29 @@ using Microsoft.EntityFrameworkCore;
 using Rider.Infrastructure.Database;
 using Rider.Infrastructure.Repositories;
 
+namespace Rider.Tests.Integration;
+
 public abstract class TestBase : IDisposable
 {
-    protected readonly RiderDbContext _context;
-    protected AccountRepository _accountRepository;
+    protected readonly RiderDbContext Context;
+    protected AccountRepository AccountRepository;
 
     protected TestBase()
     {
         var options = new DbContextOptionsBuilder<RiderDbContext>()
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
-
-        _context = new RiderDbContext(options);
+        Context = new RiderDbContext(options);
         CreateRepositories();
     }
 
-    protected void CreateRepositories()
+    private void CreateRepositories()
     {
-        _accountRepository = new AccountRepository(_context);    
+        AccountRepository = new AccountRepository(Context);    
     }
     
     public void Dispose()
     {
-        _context.Dispose();
+        Context.Dispose();
     }
 }

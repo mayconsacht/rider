@@ -1,6 +1,6 @@
 using Account.Application.Repositories;
+using BuildingBlocks.Shared.DTO.Account;
 using Microsoft.Extensions.Logging;
-using Account.CrossCutting.DTO.Account;
 using AccountEntity = Account.Domain.Entities.Account;
 
 namespace Account.Application.UseCases.Account;

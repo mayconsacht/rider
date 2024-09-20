@@ -1,4 +1,4 @@
-using Account.CrossCutting.DTO.Account;
+using BuildingBlocks.Shared.DTO.Account;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Account.Infrastructure.Apis;

@@ -1,4 +1,4 @@
-namespace Account.Domain.Entities;
+namespace BuildingBlocks.Shared.Domain;
 
 public abstract class Entity
 {

@@ -1,7 +1,7 @@
 using Account.Application.UseCases.Account;
-using Account.CrossCutting.DTO.Account;
 using Account.Infrastructure.Gateways;
 using Account.Tests.Mocks.Account;
+using BuildingBlocks.Shared.DTO.Account;
 using Microsoft.Extensions.Logging;
 using Moq;
 

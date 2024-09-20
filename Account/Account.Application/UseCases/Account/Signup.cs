@@ -1,8 +1,7 @@
 using Account.Application.Gateways;
 using Account.Application.Repositories;
 using Microsoft.Extensions.Logging;
-using Account.CrossCutting.DTO.Account;
-using Account.Domain.Exceptions;
+using BuildingBlocks.Shared.DTO.Account;
 using AccountEntity = Account.Domain.Entities.Account;
 
 namespace Account.Application.UseCases.Account;

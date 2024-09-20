@@ -1,4 +1,4 @@
-namespace Account.CrossCutting.DTO.Account;
+namespace BuildingBlocks.Shared.DTO.Account;
 
 public class AccountNoIdDto
 {

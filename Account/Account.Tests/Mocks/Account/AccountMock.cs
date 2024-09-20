@@ -1,4 +1,4 @@
-using Account.CrossCutting.DTO.Account;
+using BuildingBlocks.Shared.DTO.Account;
 
 namespace Account.Tests.Mocks.Account;
 

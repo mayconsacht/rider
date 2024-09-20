@@ -1,9 +1,10 @@
 using Account.Domain.Exceptions;
 using Account.Domain.ValueObjects;
+using BuildingBlocks.Shared.Domain;
 
 namespace Account.Domain.Entities;
 
-public sealed class Account : Entity
+public sealed class Account : Entity, IAggregateRoot
 {
     public Name Name { get; private set; }
     public Email Email { get; private set; }

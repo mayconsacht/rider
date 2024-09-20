@@ -1,11 +1,10 @@
-using BuildingBlocks.Shared.DTO.Account;
 using Ride.Domain.Entities;
 using Ride.Domain.Enums;
 using Ride.Domain.Exceptions;
-using Tests.Mocks;
+using Ride.Tests.Mocks;
 using RideEntity = Ride.Domain.Entities.Ride;
 
-namespace Tests.Unit.Domain.Entities;
+namespace Ride.Tests.Unit.Domain.Entities;
 
 public class RideTest
 {

@@ -1,6 +1,6 @@
 using BuildingBlocks.Shared.DTO.Account;
 
-namespace Tests.Mocks;
+namespace Ride.Tests.Mocks;
 
 public class AccountMock
 {

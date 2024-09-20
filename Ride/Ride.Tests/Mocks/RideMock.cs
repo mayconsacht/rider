@@ -1,7 +1,7 @@
 using Ride.Domain.Enums;
 using RideEntity = Ride.Domain.Entities.Ride;
 
-namespace Tests.Mocks;
+namespace Ride.Tests.Mocks;
 
 public static class RideMock
 {

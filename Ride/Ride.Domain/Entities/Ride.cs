@@ -1,6 +1,6 @@
-using System.Runtime.InteropServices.JavaScript;
 using BuildingBlocks.Shared.Domain;
 using BuildingBlocks.Shared.DTO.Account;
+using Ride.Domain.Enums;
 using Ride.Domain.Exceptions;
 using Ride.Domain.Service.FareCalculator;
 using Ride.Domain.ValueObject;
@@ -13,14 +13,15 @@ public sealed class Ride : Entity, IAggregateRoot
     public Coordinate To { get; private set; }
     public Guid PassengerId { get; private set; }
     public Guid DriverId { get; private set; }
-    //TODO: create enum
-    public string Status { get; private set; }
+    public RideStatus Status { get; private set; }
     public DateTime Date { get; private set; }
     public double Distance { get; private set; }
     public double Fare { get; private set; }
 
+    public Ride() {}
+    
     public Ride(Guid id, Guid passengerId, Guid driverId, double fromLatitude, double toLatitude, double fromLongitude,
-	    double toLongitude, string status, DateTime date, double distance, double fare)
+	    double toLongitude, RideStatus status, DateTime date, double distance, double fare)
     {
 	    Id = id;
 	    PassengerId = passengerId;
@@ -34,7 +35,7 @@ public sealed class Ride : Entity, IAggregateRoot
     }
 
     public static Ride Create(Guid passengerId, Guid driverId, double fromLatitude, double toLatitude,
-	    double fromLongitude, double toLongitude, string status, DateTime date, double distance, double fare)
+	    double fromLongitude, double toLongitude, RideStatus status, DateTime date, double distance, double fare)
     {
 	    return new Ride(Guid.NewGuid(), passengerId, driverId, fromLatitude, toLatitude, fromLongitude, toLongitude,
 		    status, date, distance, fare);
@@ -43,20 +44,20 @@ public sealed class Ride : Entity, IAggregateRoot
     public void Accept(AccountDto account)
     {
 		if (!account.IsDriver) throw new RideDomainException("Account is not from a Driver");
-		if (!Status.Equals("Requested")) throw new RideDomainException("Invalid status");
+		if (!Status.Equals(RideStatus.Requested)) throw new RideDomainException("Invalid status");
 		DriverId = account.Id;
-		Status = "Accepted";
+		Status = RideStatus.Accepted;
     }
 
     public void Start()
     {
-	    if (!Status.Equals("Accepted")) throw new RideDomainException("Invalid status");
-	    Status = "InProgress";
+	    if (!Status.Equals(RideStatus.Accepted)) throw new RideDomainException("Invalid status");
+	    Status = RideStatus.InProgress;
     }
 
     public void UpdatePosition(Position lastPosition, Position currentPosition)
     {
-	    if (!Status.Equals("InProgress")) throw new RideDomainException("Invalid status");
+	    if (!Status.Equals(RideStatus.InProgress)) throw new RideDomainException("Invalid status");
 	    var segment = new Segment(lastPosition.Coordinate, currentPosition.Coordinate);
 	    var distance = segment.GetDistance();
 	    Distance += distance;
@@ -64,7 +65,7 @@ public sealed class Ride : Entity, IAggregateRoot
     }
 
 	public void Finish() {
-		if (!Status.Equals("InProgress")) throw new RideDomainException("Invalid status");
-		Status = "Completed";
+		if (!Status.Equals(RideStatus.InProgress)) throw new RideDomainException("Invalid status");
+		Status = RideStatus.Completed;
 	}
 }

@@ -1,4 +1,5 @@
 using Account.Application.Repositories;
+using BuildingBlocks.Shared.Application;
 using BuildingBlocks.Shared.DTO.Account;
 using Microsoft.Extensions.Logging;
 using AccountEntity = Account.Domain.Entities.Account;

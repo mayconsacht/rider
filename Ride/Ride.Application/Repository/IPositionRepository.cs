@@ -4,6 +4,6 @@ namespace Ride.Application.Repository;
 
 public interface IPositionRepository
 {
-    Task SavePosition(Position position);
+    Task<Guid?> SavePosition(Position position);
     Task<Position?> GetLastPositionFromRideId(Guid id);
 }

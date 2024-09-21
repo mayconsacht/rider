@@ -20,9 +20,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Database connection
-builder.Services.AddDbContext<AccountDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddSingleton<AccountDbContext>();
+builder.AddNpgsqlDbContext<AccountDbContext>("accountdb");
 
 app.Run();

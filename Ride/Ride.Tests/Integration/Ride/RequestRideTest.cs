@@ -60,7 +60,7 @@ public class RequestRideTest : TestBase
         var result = await requestRide.Execute(requestRideDto);
         
         // Assert
-        Assert.IsNull(result);
+        Assert.That(result, Is.Null);
         _logger.Verify(
             x => x.Log(
                 It.Is<LogLevel>(l => l == LogLevel.Warning),

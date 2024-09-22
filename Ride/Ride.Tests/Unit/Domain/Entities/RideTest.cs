@@ -25,7 +25,7 @@ public class RideTest
         Assert.That(rideCreated.From.Longitude, Is.EqualTo(rideMock.From.Longitude));
         Assert.That(rideCreated.To.Latitude, Is.EqualTo(rideMock.To.Latitude));
         Assert.That(rideCreated.To.Longitude, Is.EqualTo(rideMock.To.Longitude));
-        Assert.That(rideCreated.Status, Is.EqualTo(rideMock.Status));
+        Assert.That(rideCreated.Status, Is.EqualTo(RideStatus.Requested));
         Assert.That(rideCreated.Date, Is.EqualTo(rideCreated.Date));
         Assert.That(rideCreated.Distance, Is.EqualTo(rideCreated.Distance));
         Assert.That(rideCreated.Fare, Is.EqualTo(rideCreated.Fare));

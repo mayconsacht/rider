@@ -43,5 +43,14 @@ public static class RideMock
                 ToLongitude = 130
             };
         }
+
+        public static AcceptRideDto CreateAcceptRideDto(Guid? rideId = null, Guid? driverId = null)
+        {
+            return new AcceptRideDto()
+            {
+                RideId = rideId ?? Guid.NewGuid(),
+                DriverId = driverId ?? Guid.NewGuid()
+            };
+        }
     }
 }

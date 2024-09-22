@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Ride.Application.Repository;
+using Ride.Application.Repositories;
 using Ride.Infrastructure.Database;
 
 namespace Ride.Infrastructure.Repositories;

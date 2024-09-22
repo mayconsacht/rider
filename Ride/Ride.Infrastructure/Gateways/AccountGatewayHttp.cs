@@ -1,6 +1,6 @@
 using BuildingBlocks.Shared.DTO.Account;
 using BuildingBlocks.Shared.Infrastructure;
-using Ride.Application.Gateway;
+using Ride.Application.Gateways;
 
 namespace Ride.Infrastructure.Gateways;
 

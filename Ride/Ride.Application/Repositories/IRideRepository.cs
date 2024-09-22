@@ -1,6 +1,6 @@
 using RideEntity = Ride.Domain.Entities.Ride;
 
-namespace Ride.Application.Repository;
+namespace Ride.Application.Repositories;
 
 public interface IRideRepository
 {

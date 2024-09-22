@@ -1,6 +1,6 @@
 using BuildingBlocks.Shared.DTO.Account;
 
-namespace Ride.Application.Gateway;
+namespace Ride.Application.Gateways;
 
 public interface IAccountGateway
 {

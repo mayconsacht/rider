@@ -1,6 +1,6 @@
 using Ride.Domain.Entities;
 
-namespace Ride.Application.Repository;
+namespace Ride.Application.Repositories;
 
 public interface IPositionRepository
 {

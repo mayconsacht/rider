@@ -1,7 +1,7 @@
 using BuildingBlocks.Shared.Application;
 using BuildingBlocks.Shared.DTO.Ride;
-using Ride.Application.Gateway;
-using Ride.Application.Repository;
+using Ride.Application.Gateways;
+using Ride.Application.Repositories;
 
 namespace Ride.Application.UseCases.Ride;
 

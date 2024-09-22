@@ -20,7 +20,7 @@ public class HttpService
         return JsonSerializer.Deserialize<T>(jsonResponse);
     }
 
-    public async Task<T?> PostAsync<T>(string uri, object data)
+    public async Task<T?> PostAsync<T>(string? uri, object data)
     {
         var json = JsonSerializer.Serialize(data);
         var content = new StringContent(json, Encoding.UTF8, "application/json");

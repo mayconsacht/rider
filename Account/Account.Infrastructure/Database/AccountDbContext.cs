@@ -6,7 +6,7 @@ namespace Account.Infrastructure.Database;
 
 public class AccountDbContext(DbContextOptions<AccountDbContext> options) : DbContext(options)
 {
-    public DbSet<AccountEntity?> Accounts { get; set; }
+    public DbSet<AccountEntity> Accounts { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

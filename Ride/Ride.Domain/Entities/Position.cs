@@ -9,6 +9,8 @@ public sealed class Position : Entity
     public Coordinate Coordinate { get; private set; }
     public DateTime Date { get; private set; }
 
+    public Position() { }
+
     public Position(Guid id, Guid rideId, double latitude, double longitude, DateTime date)
     {
         Id = id;

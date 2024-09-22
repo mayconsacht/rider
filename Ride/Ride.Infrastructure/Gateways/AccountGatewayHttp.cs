@@ -4,34 +4,26 @@ using Ride.Application.Gateways;
 
 namespace Ride.Infrastructure.Gateways;
 
-public class AccountGatewayHttp : IAccountGateway
+public class AccountGatewayHttp(HttpService http, IConfiguration configuration, ILogger<AccountGatewayHttp> logger)
+    : IAccountGateway
 {
-    private readonly HttpService _http;
-    private readonly string _baseUrl;
-    private readonly ILogger<AccountGatewayHttp> _logger;
-    
-    public AccountGatewayHttp(HttpService http, IConfiguration configuration, ILogger<AccountGatewayHttp> logger)
-    {
-        _http = http;
-        _baseUrl = configuration.GetValue<string>("AccountUri");
-        _logger = logger;
-    }
-    
+    private readonly string? _baseUrl = configuration.GetValue<string>("AccountUri");
+
     public async Task<Guid?> Signup(AccountDto account)
     {
         try
         {
-            return await _http.PostAsync<Guid?>(_baseUrl, account);
+            return await http.PostAsync<Guid?>(_baseUrl, account);
         }
         catch (HttpRequestException e)
         {
-            _logger.LogWarning($"Failed to call API: {e.Message}");
+            logger.LogWarning($"Failed to call API: {e.Message}");
         }
         return null;
     }
 
     public async Task<AccountDto?> GetAccountById(Guid accountId)
     {
-        return await _http.GetAsync<AccountDto>($"{_baseUrl}/{accountId}");
+        return await http.GetAsync<AccountDto>($"{_baseUrl}/{accountId}");
     }
 }

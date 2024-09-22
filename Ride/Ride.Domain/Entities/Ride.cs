@@ -35,8 +35,12 @@ public sealed class Ride : Entity, IAggregateRoot
     }
 
     public static Ride Create(Guid passengerId, Guid driverId, double fromLatitude, double toLatitude,
-	    double fromLongitude, double toLongitude, RideStatus status, DateTime date, double distance, double fare)
+	    double fromLongitude, double toLongitude)
     {
+	    const RideStatus status = RideStatus.Requested;
+	    var date = new DateTime().Date;
+	    const int distance = 0;
+	    const int fare = 0;
 	    return new Ride(Guid.NewGuid(), passengerId, driverId, fromLatitude, toLatitude, fromLongitude, toLongitude,
 		    status, date, distance, fare);
     }

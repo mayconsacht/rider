@@ -5,24 +5,17 @@ using Ride.Application.Repositories;
 
 namespace Ride.Application.UseCases.Ride;
 
-public class GetRide : IUseCase<Guid, Task<RideDto>>
+public class GetRide(
+    IRideRepository rideRepository,
+    IPositionRepository positionRepository,
+    IAccountGateway accountGateway)
+    : IUseCase<Guid, Task<RideDto>>
 {
-    private readonly IRideRepository _rideRepository;
-    private readonly IPositionRepository _positionRepository;
-    private readonly IAccountGateway _accountGateway;
-    
-    public GetRide(IRideRepository rideRepository, IPositionRepository positionRepository, IAccountGateway accountGateway)
+    public async Task<RideDto> Execute(Guid request)
     {
-        _rideRepository = rideRepository;
-        _positionRepository = positionRepository;
-        _accountGateway = accountGateway;
-    }
-    
-    public async Task<RideDto> Execute(Guid id)
-    {
-        var ride = await _rideRepository.GetRideById(id);
-        var account = await _accountGateway.GetAccountById(ride.PassengerId);
-        var lasPosition = await _positionRepository.GetLastPositionFromRideId(ride.Id);
+        var ride = await rideRepository.GetRideById(request);
+        var account = await accountGateway.GetAccountById(ride.PassengerId);
+        var lasPosition = await positionRepository.GetLastPositionFromRideId(ride.Id);
         return new RideDto
         {
             Id = ride.Id,

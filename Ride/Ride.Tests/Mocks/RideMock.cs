@@ -1,3 +1,4 @@
+using BuildingBlocks.Shared.DTO.Ride;
 using Ride.Domain.Enums;
 using RideEntity = Ride.Domain.Entities.Ride;
 
@@ -26,6 +27,21 @@ public static class RideMock
             return new RideEntity(rideId ?? Guid.NewGuid(), Guid.NewGuid(),
                 Guid.NewGuid(), 10, 43, 130, 100, RideStatus.InProgress, 
                 DateTimeOffset.UtcNow.Date, 280, 10);
+        }
+    }
+
+    public class DTO()
+    {
+        public static RequestRideDto CreateRequestRideDto(Guid? passengerId = null)
+        {
+            return new RequestRideDto()
+            {
+                PassengerId = passengerId ?? Guid.NewGuid(),
+                FromLatitude = 10,
+                FromLongitude = 45,
+                ToLatitude = 78,
+                ToLongitude = 130
+            };
         }
     }
 }

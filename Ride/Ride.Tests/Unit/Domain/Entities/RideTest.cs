@@ -16,8 +16,7 @@ public class RideTest
         
         // Act
         var rideCreated = RideEntity.Create(rideMock.PassengerId, rideMock.DriverId, rideMock.From.Latitude,
-            rideMock.To.Latitude, rideMock.From.Longitude, rideMock.To.Longitude, rideMock.Status, rideMock.Date,
-            rideMock.Distance, rideMock.Fare);
+            rideMock.To.Latitude, rideMock.From.Longitude, rideMock.To.Longitude);
         
         // Assert
         Assert.That(rideCreated.PassengerId, Is.EqualTo(rideMock.PassengerId));
@@ -39,15 +38,14 @@ public class RideTest
         var rideMock = RideMock.Entity.CreateAccepted();
         
         // Act
-        var ex = Assert.Throws<RideDomainException>(CreateAccount);
+        var ex = Assert.Throws<RideDomainException>(CreateAccepted);
         
         // Assert
         Assert.That(ex.Message, Is.EqualTo("Invalid longitude"));
         return;
         
-        void CreateAccount() => RideEntity.Create(rideMock.PassengerId, rideMock.DriverId, rideMock.From.Latitude,
-            rideMock.To.Latitude, -200, rideMock.To.Longitude, rideMock.Status, rideMock.Date,
-            rideMock.Distance, rideMock.Fare);
+        void CreateAccepted() => RideEntity.Create(rideMock.PassengerId, rideMock.DriverId, rideMock.From.Latitude,
+            rideMock.To.Latitude, -200, rideMock.To.Longitude);
     }
     
     [Test]
@@ -57,15 +55,14 @@ public class RideTest
         var rideMock = RideMock.Entity.CreateAccepted();
         
         // Act
-        var ex = Assert.Throws<RideDomainException>(CreateAccount);
+        var ex = Assert.Throws<RideDomainException>(CreateAccepted);
         
         // Assert
         Assert.That(ex.Message, Is.EqualTo("Invalid longitude"));
         return;
         
-        void CreateAccount() => RideEntity.Create(rideMock.PassengerId, rideMock.DriverId, rideMock.From.Latitude,
-            rideMock.To.Latitude, 200, rideMock.To.Longitude, rideMock.Status, rideMock.Date,
-            rideMock.Distance, rideMock.Fare);
+        void CreateAccepted() => RideEntity.Create(rideMock.PassengerId, rideMock.DriverId, rideMock.From.Latitude,
+            rideMock.To.Latitude, 200, rideMock.To.Longitude);
     }
     
     [Test]
@@ -82,8 +79,7 @@ public class RideTest
         return;
         
         void CreateAccount() => RideEntity.Create(rideMock.PassengerId, rideMock.DriverId, 100,
-            rideMock.To.Latitude, rideMock.From.Longitude, rideMock.To.Longitude, rideMock.Status, rideMock.Date,
-            rideMock.Distance, rideMock.Fare);
+            rideMock.To.Latitude, rideMock.From.Longitude, rideMock.To.Longitude);
     }
     
     [Test]
@@ -100,8 +96,7 @@ public class RideTest
         return;
         
         void CreateAccount() => RideEntity.Create(rideMock.PassengerId, rideMock.DriverId, -95,
-            rideMock.To.Latitude, rideMock.From.Longitude, rideMock.To.Longitude, rideMock.Status, rideMock.Date,
-            rideMock.Distance, rideMock.Fare);
+            rideMock.To.Latitude, rideMock.From.Longitude, rideMock.To.Longitude);
     }
     
     [Test]

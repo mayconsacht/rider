@@ -18,9 +18,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ride.Application", "src\Rid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ride.Infrastructure", "src\Ride.Infrastructure\Ride.Infrastructure.csproj", "{51FEEBCA-919C-4728-8C52-88DA441C41C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rider.AppHost", "Rider.AppHost\Rider.AppHost.csproj", "{54393837-1E2A-4A60-BE62-865DDAE47060}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rider.AppHost", "src\Rider.AppHost\Rider.AppHost.csproj", "{DF0A8124-0EB0-4A16-8A01-FF44EB571726}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rider.ServiceDefaults", "Rider.ServiceDefaults\Rider.ServiceDefaults.csproj", "{7CC05FDC-11FF-4CDC-9A17-1F42A1645EE3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rider.ServiceDefaults", "src\Rider.ServiceDefaults\Rider.ServiceDefaults.csproj", "{CBCC165E-F3C9-4D71-B790-ED2A20AA7F67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,5 +72,13 @@ Global
 		{7CC05FDC-11FF-4CDC-9A17-1F42A1645EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CC05FDC-11FF-4CDC-9A17-1F42A1645EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CC05FDC-11FF-4CDC-9A17-1F42A1645EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF0A8124-0EB0-4A16-8A01-FF44EB571726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF0A8124-0EB0-4A16-8A01-FF44EB571726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF0A8124-0EB0-4A16-8A01-FF44EB571726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF0A8124-0EB0-4A16-8A01-FF44EB571726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBCC165E-F3C9-4D71-B790-ED2A20AA7F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBCC165E-F3C9-4D71-B790-ED2A20AA7F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBCC165E-F3C9-4D71-B790-ED2A20AA7F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBCC165E-F3C9-4D71-B790-ED2A20AA7F67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

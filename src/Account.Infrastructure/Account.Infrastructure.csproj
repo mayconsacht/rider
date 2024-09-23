@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Rider.ServiceDefaults\Rider.ServiceDefaults.csproj" />
       <ProjectReference Include="..\Account.Application\Account.Application.csproj" />
       <ProjectReference Include="..\Account.Domain\Account.Domain.csproj" />
     </ItemGroup>

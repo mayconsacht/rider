@@ -17,6 +17,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.MessageBroker\BuildingBlocks.MessageBroker.csproj" />
+      <ProjectReference Include="..\..\Rider.ServiceDefaults\Rider.ServiceDefaults.csproj" />
       <ProjectReference Include="..\Ride.Application\Ride.Application.csproj" />
       <ProjectReference Include="..\Ride.Domain\Ride.Domain.csproj" />
     </ItemGroup>

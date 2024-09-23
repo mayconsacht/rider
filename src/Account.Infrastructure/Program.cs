@@ -1,7 +1,13 @@
-using Microsoft.EntityFrameworkCore;
+using Account.Infrastructure;
 using Account.Infrastructure.Database;
+using Rider.AppHost.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
+builder.Services.AddProblemDetails();
+
+builder.AddApplicationServices();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

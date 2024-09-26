@@ -11,7 +11,7 @@ public class FinishRideTest : TestBase
     {
         // Arrange
         var ride = RideMock.Entity.CreateInProgress();
-        var finishRide = new FinishRide(RideRepository);
+        var finishRide = new FinishRide(RideRepository, RideIntegrationEventService);
 
         Context.Rides.Add(ride);
         await Context.SaveChangesAsync();

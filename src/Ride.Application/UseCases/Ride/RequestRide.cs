@@ -2,11 +2,13 @@ using Shared.Application;
 using Shared.DTO.Ride;
 using Microsoft.Extensions.Logging;
 using Ride.Application.Gateways;
+using Ride.Application.IntegrationEvents;
+using Ride.Application.IntegrationEvents.Events;
 using Ride.Application.Repositories;
 
 namespace Ride.Application.UseCases.Ride;
 
-public class RequestRide(IAccountGateway accountGateway, IRideRepository rideRepository, ILogger<RequestRide> logger) : IUseCase<RequestRideDto, Task<Guid?>>
+public class RequestRide(IAccountGateway accountGateway, IRideRepository rideRepository, ILogger<RequestRide> logger, IRideIntegrationEventService rideIntegrationEventService) : IUseCase<RequestRideDto, Task<Guid?>>
 {
     public async Task<Guid?> Execute(RequestRideDto request)
     {
@@ -24,6 +26,8 @@ public class RequestRide(IAccountGateway accountGateway, IRideRepository rideRep
         }
         var ride = Domain.Entities.Ride.Create(request.PassengerId, Guid.Empty, request.FromLatitude, request.ToLatitude, request.FromLongitude, request.ToLongitude);
         await rideRepository.Save(ride);
+        var requestedEvent = new RideRequestedIntegrationEvent(ride.Id, ride.PassengerId);
+        await rideIntegrationEventService.PublishThroughEventBusAsync(requestedEvent);
         return ride.Id;
     }
 }

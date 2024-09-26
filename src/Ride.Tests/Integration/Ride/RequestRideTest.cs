@@ -25,7 +25,7 @@ public class RequestRideTest : TestBase
         var accountGateway = new Mock<IAccountGateway>();
         accountGateway.Setup(acc => acc.GetAccountById(It.IsAny<Guid>()))
             .ReturnsAsync(account);
-        var requestRide = new RequestRide(accountGateway.Object, RideRepository, _logger.Object);
+        var requestRide = new RequestRide(accountGateway.Object, RideRepository, _logger.Object, RideIntegrationEventService);
         var requestRideDto = RideMock.DTO.CreateRequestRideDto();
         
         // Act
@@ -54,7 +54,7 @@ public class RequestRideTest : TestBase
             .ReturnsAsync(account);
         await RideRepository.Save(ride);
         var requestRideDto = RideMock.DTO.CreateRequestRideDto(ride.PassengerId);
-        var requestRide = new RequestRide(accountGateway.Object, RideRepository, _logger.Object);
+        var requestRide = new RequestRide(accountGateway.Object, RideRepository, _logger.Object, RideIntegrationEventService);
         
         // Act
         var result = await requestRide.Execute(requestRideDto);
@@ -81,7 +81,7 @@ public class RequestRideTest : TestBase
         accountGateway.Setup(acc => acc.GetAccountById(It.IsAny<Guid>()))
             .ReturnsAsync(account);
         var requestRideDto = RideMock.DTO.CreateRequestRideDto();
-        var requestRide = new RequestRide(accountGateway.Object, RideRepository, _logger.Object);
+        var requestRide = new RequestRide(accountGateway.Object, RideRepository, _logger.Object, RideIntegrationEventService);
         
         // Act
         var result = await requestRide.Execute(requestRideDto);

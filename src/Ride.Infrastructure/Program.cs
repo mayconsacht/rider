@@ -1,7 +1,6 @@
 using Ride.Infrastructure;
 using Ride.Infrastructure.Configuration;
 using Ride.Infrastructure.Database;
-using Rider.AppHost.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,5 +34,4 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Database connection
-builder.AddNpgsqlDbContext<RideDbContext>("ridedb");
+app.Run();

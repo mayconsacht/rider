@@ -8,13 +8,7 @@ var postgres = builder.AddPostgres("postgres");
 var accountDb = postgres.AddDatabase("accountdb");
 var rideDb = postgres.AddDatabase("ridedb");
 
-// Services
-var account = builder.AddProject<Projects.Account_Infrastructure>("account-infrastructure")
-    .WithReference(rabbitMq)
-    .WithReference(accountDb);
-
-var ride = builder.AddProject<Projects.Ride_Infrastructure>("ride-infrastructure")
-    .WithReference(rabbitMq)
-    .WithReference(rideDb);
+builder.AddProject<Projects.Account_Infrastructure>("account").WithReference(rabbitMq).WithReference(accountDb);
+builder.AddProject<Projects.Ride_Infrastructure>("ride").WithReference(rabbitMq).WithReference(rideDb);
 
 builder.Build().Run();

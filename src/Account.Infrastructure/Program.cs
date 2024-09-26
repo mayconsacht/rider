@@ -1,6 +1,5 @@
 using Account.Infrastructure;
 using Account.Infrastructure.Database;
-using Rider.AppHost.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +24,5 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Database connection
-builder.AddNpgsqlDbContext<AccountDbContext>("accountdb");
 
 app.Run();

@@ -1,8 +1,8 @@
 using Shared.Application;
 using Shared.DTO.Ride;
-using Microsoft.Extensions.Logging;
 using Ride.Application.Gateways;
 using Ride.Application.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace Ride.Application.UseCases.Ride;
 

@@ -26,7 +26,7 @@ public class AcceptRideTest : TestBase
         var accountGateway = new Mock<IAccountGateway>();
         accountGateway.Setup(acc => acc.GetAccountById(It.IsAny<Guid>()))
             .ReturnsAsync(account);
-        var acceptRide = new AcceptRide(RideRepository, accountGateway.Object, _logger.Object);
+        var acceptRide = new AcceptRide(RideRepository, accountGateway.Object, _logger.Object, RideIntegrationEventService);
         var requestRideDto = RideMock.DTO.CreateAcceptRideDto(ride.Id);
 
         Context.Rides.Add(ride);
@@ -51,7 +51,7 @@ public class AcceptRideTest : TestBase
         var accountGateway = new Mock<IAccountGateway>();
         accountGateway.Setup(acc => acc.GetAccountById(It.IsAny<Guid>()))
             .ReturnsAsync(account);
-        var acceptRide = new AcceptRide(RideRepository, accountGateway.Object, _logger.Object);
+        var acceptRide = new AcceptRide(RideRepository, accountGateway.Object, _logger.Object, RideIntegrationEventService);
         var requestRideDto = RideMock.DTO.CreateAcceptRideDto(ride.Id, ride.DriverId);
 
         Context.Rides.Add(ride);

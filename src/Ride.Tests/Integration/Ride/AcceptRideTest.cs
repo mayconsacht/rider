@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Moq;
 using Ride.Application.Gateways;
-using Ride.Application.UseCases.Ride;
+using Ride.Application.UseCases.Ride.Commands;
 using Ride.Domain.Enums;
 using Ride.Tests.Mocks;
 
@@ -9,12 +9,12 @@ namespace Ride.Tests.Integration.Ride;
 
 public class AcceptRideTest : TestBase
 {
-    private Mock<ILogger<AcceptRide>> _logger;
+    private Mock<ILogger<AcceptRideCommandHandler>> _logger;
     
     [SetUp]
     public void Setup()
     {
-        _logger = new Mock<ILogger<AcceptRide>>();
+        _logger = new Mock<ILogger<AcceptRideCommandHandler>>();
     }
     
     [Test]
@@ -26,14 +26,14 @@ public class AcceptRideTest : TestBase
         var accountGateway = new Mock<IAccountGateway>();
         accountGateway.Setup(acc => acc.GetAccountById(It.IsAny<Guid>()))
             .ReturnsAsync(account);
-        var acceptRide = new AcceptRide(RideRepository, accountGateway.Object, _logger.Object, RideIntegrationEventService);
-        var requestRideDto = RideMock.DTO.CreateAcceptRideDto(ride.Id);
+        var acceptRide = new AcceptRideCommandHandler(RideRepository, accountGateway.Object, _logger.Object, RideIntegrationEventService);
+        var requestRideCommand = RideMock.Command.CreateAcceptRideCommand(ride.Id);
 
         Context.Rides.Add(ride);
         await Context.SaveChangesAsync();
         
         // Act
-        var result = await acceptRide.Execute(requestRideDto);
+        var result = await acceptRide.Handle(requestRideCommand, default);
         
         // Assert
         Assert.That(result, Is.Not.Null);
@@ -51,14 +51,14 @@ public class AcceptRideTest : TestBase
         var accountGateway = new Mock<IAccountGateway>();
         accountGateway.Setup(acc => acc.GetAccountById(It.IsAny<Guid>()))
             .ReturnsAsync(account);
-        var acceptRide = new AcceptRide(RideRepository, accountGateway.Object, _logger.Object, RideIntegrationEventService);
-        var requestRideDto = RideMock.DTO.CreateAcceptRideDto(ride.Id, ride.DriverId);
+        var acceptRide = new AcceptRideCommandHandler(RideRepository, accountGateway.Object, _logger.Object, RideIntegrationEventService);
+        var requestRideCommand = RideMock.Command.CreateAcceptRideCommand(ride.Id, ride.DriverId);
 
         Context.Rides.Add(ride);
         await Context.SaveChangesAsync();
         
         // Act
-        var result = await acceptRide.Execute(requestRideDto);
+        var result = await acceptRide.Handle(requestRideCommand, default);
         
         // Assert
         Assert.IsNull(result);

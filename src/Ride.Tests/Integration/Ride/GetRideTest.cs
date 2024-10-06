@@ -17,14 +17,14 @@ public class GetRideTest : TestBase
         var accountGateway = new Mock<IAccountGateway>();
         accountGateway.Setup(acc => acc.GetAccountById(It.IsAny<Guid>()))
             .ReturnsAsync(account);
-        var useCase = new GetRide(RideRepository, PositionRepository, accountGateway.Object);
+        var query = new RideQueries(RideRepository, PositionRepository, accountGateway.Object);
 
         Context.Rides.Add(ride);
         Context.Positions.Add(position);
         await Context.SaveChangesAsync();
         
         // Act
-        var rideFromDb = await useCase.Execute(ride.Id);
+        var rideFromDb = await query.GetRide(ride.Id);
         
         // Assert
         Assert.That(rideFromDb.Id, Is.EqualTo(ride.Id));

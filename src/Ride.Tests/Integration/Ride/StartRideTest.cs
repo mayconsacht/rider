@@ -1,4 +1,5 @@
 using Ride.Application.UseCases.Ride;
+using Ride.Application.UseCases.Ride.Commands;
 using Ride.Domain.Enums;
 using Ride.Tests.Mocks;
 
@@ -11,13 +12,13 @@ public class StartRideTest : TestBase
     {
         // Arrange
         var ride = RideMock.Entity.CreateAccepted();
-        var startRide = new StartRide(RideRepository);
-
+        var startRide = new StartRideCommandHandler(RideRepository);
         Context.Rides.Add(ride);
         await Context.SaveChangesAsync();
-        
+        var command = new StartRideCommand(ride.Id);
+
         // Act
-        var result = await startRide.Execute(ride.Id);
+        var result = await startRide.Handle(command, default);
         
         // Assert
         Assert.That(result, Is.Not.Null);

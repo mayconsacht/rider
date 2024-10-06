@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Moq;
 using Ride.Application.Gateways;
-using Ride.Application.UseCases.Ride;
+using Ride.Application.UseCases.Ride.Commands;
 using Ride.Domain.Enums;
 using Ride.Tests.Mocks;
 
@@ -9,12 +9,12 @@ namespace Ride.Tests.Integration.Ride;
 
 public class RequestRideTest : TestBase
 {
-    private Mock<ILogger<RequestRide>> _logger;
+    private Mock<ILogger<RequestRideCommandHandler>> _logger;
     
     [SetUp]
     public void Setup()
     {
-        _logger = new Mock<ILogger<RequestRide>>();
+        _logger = new Mock<ILogger<RequestRideCommandHandler>>();
     }
     
     [Test]
@@ -25,21 +25,21 @@ public class RequestRideTest : TestBase
         var accountGateway = new Mock<IAccountGateway>();
         accountGateway.Setup(acc => acc.GetAccountById(It.IsAny<Guid>()))
             .ReturnsAsync(account);
-        var requestRide = new RequestRide(accountGateway.Object, RideRepository, _logger.Object, RideIntegrationEventService);
-        var requestRideDto = RideMock.DTO.CreateRequestRideDto();
+        var requestRide = new RequestRideCommandHandler(accountGateway.Object, RideRepository, _logger.Object, RideIntegrationEventService);
+        var requestRideCommand = RideMock.Command.CreateRequestRideCommand();
         
         // Act
-        var rideId = await requestRide.Execute(requestRideDto);
+        var rideId = await requestRide.Handle(requestRideCommand, default);
         
         // Assert
         var rideFromDb = await RideRepository.GetRideById(rideId ?? Guid.Empty);
         Assert.That(rideFromDb.Id, Is.EqualTo(rideId));
-        Assert.That(rideFromDb.PassengerId, Is.EqualTo(requestRideDto.PassengerId));
+        Assert.That(rideFromDb.PassengerId, Is.EqualTo(requestRideCommand.PassengerId));
         Assert.That(rideFromDb.Status, Is.EqualTo(RideStatus.Requested));
-        Assert.That(rideFromDb.From.Longitude, Is.EqualTo(requestRideDto.FromLongitude));
-        Assert.That(rideFromDb.From.Latitude, Is.EqualTo(requestRideDto.FromLatitude));
-        Assert.That(rideFromDb.To.Latitude, Is.EqualTo(requestRideDto.ToLatitude));
-        Assert.That(rideFromDb.To.Longitude, Is.EqualTo(requestRideDto.ToLongitude));
+        Assert.That(rideFromDb.From.Longitude, Is.EqualTo(requestRideCommand.FromLongitude));
+        Assert.That(rideFromDb.From.Latitude, Is.EqualTo(requestRideCommand.FromLatitude));
+        Assert.That(rideFromDb.To.Latitude, Is.EqualTo(requestRideCommand.ToLatitude));
+        Assert.That(rideFromDb.To.Longitude, Is.EqualTo(requestRideCommand.ToLongitude));
     }
     
     [Test]
@@ -53,11 +53,11 @@ public class RequestRideTest : TestBase
         accountGateway.Setup(acc => acc.GetAccountById(It.IsAny<Guid>()))
             .ReturnsAsync(account);
         await RideRepository.Save(ride);
-        var requestRideDto = RideMock.DTO.CreateRequestRideDto(ride.PassengerId);
-        var requestRide = new RequestRide(accountGateway.Object, RideRepository, _logger.Object, RideIntegrationEventService);
+        var requestRideCommand = RideMock.Command.CreateRequestRideCommand(ride.PassengerId);
+        var requestRide = new RequestRideCommandHandler(accountGateway.Object, RideRepository, _logger.Object, RideIntegrationEventService);
         
         // Act
-        var result = await requestRide.Execute(requestRideDto);
+        var result = await requestRide.Handle(requestRideCommand, default);
         
         // Assert
         Assert.That(result, Is.Null);
@@ -80,11 +80,11 @@ public class RequestRideTest : TestBase
         account.IsPassenger = false;
         accountGateway.Setup(acc => acc.GetAccountById(It.IsAny<Guid>()))
             .ReturnsAsync(account);
-        var requestRideDto = RideMock.DTO.CreateRequestRideDto();
-        var requestRide = new RequestRide(accountGateway.Object, RideRepository, _logger.Object, RideIntegrationEventService);
+        var requestRideCommand = RideMock.Command.CreateRequestRideCommand();
+        var requestRide = new RequestRideCommandHandler(accountGateway.Object, RideRepository, _logger.Object, RideIntegrationEventService);
         
         // Act
-        var result = await requestRide.Execute(requestRideDto);
+        var result = await requestRide.Handle(requestRideCommand, default);
         
         // Assert
         Assert.IsNull(result);

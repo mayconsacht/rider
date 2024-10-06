@@ -1,6 +1,7 @@
 using Shared.DTO.Ride;
 using Ride.Domain.Enums;
 using RideEntity = Ride.Domain.Entities.Ride;
+using Ride.Application.UseCases.Ride.Commands;
 
 namespace Ride.Tests.Mocks;
 
@@ -51,6 +52,19 @@ public static class RideMock
                 RideId = rideId ?? Guid.NewGuid(),
                 DriverId = driverId ?? Guid.NewGuid()
             };
+        }
+    }
+
+    public class Command()
+    {
+        public static RequestRideCommand CreateRequestRideCommand(Guid? passengerId = null)
+        {
+            return new RequestRideCommand(passengerId ?? Guid.NewGuid(), 10, 45, 78, 130);
+        }
+
+        public static AcceptRideCommand CreateAcceptRideCommand(Guid? rideId = null, Guid? driverId = null)
+        {
+            return new AcceptRideCommand(rideId ?? Guid.NewGuid(), driverId ?? Guid.NewGuid());
         }
     }
 }

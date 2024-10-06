@@ -1,15 +1,15 @@
+using MediatR;
 using Ride.Application.IntegrationEvents;
 using Ride.Application.IntegrationEvents.Events;
-using Shared.Application;
 using Ride.Application.Repositories;
 
-namespace Ride.Application.UseCases.Ride;
+namespace Ride.Application.UseCases.Ride.Commands;
 
-public class FinishRide(IRideRepository rideRepository, IRideIntegrationEventService rideIntegrationEventService) : IUseCase<Guid, Task<Guid?>>
+public class FinishRideCommandHandler(IRideRepository rideRepository, IRideIntegrationEventService rideIntegrationEventService) : IRequestHandler<FinishRideCommand, Guid>
 {
-    public async Task<Guid?> Execute(Guid rideId)
+    public async Task<Guid> Handle(FinishRideCommand request, CancellationToken cancellationToken)
     {
-        var ride = await rideRepository.GetRideById(rideId);
+        var ride = await rideRepository.GetRideById(request.RideId);
         ride.Finish();
         await rideRepository.UpdateRide(ride);
         var completedEvent = new RideCompletedIntegrationEvent(ride.Id, ride.Fare);

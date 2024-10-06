@@ -2,21 +2,23 @@ using Shared.Application;
 using Shared.DTO.Ride;
 using Ride.Application.Gateways;
 using Ride.Application.Repositories;
+using Ride.Application.UseCases.Ride.Queries;
+using Ride.Application.UseCases.Ride.Queries.ViewModel;
 
 namespace Ride.Application.UseCases.Ride;
 
-public class GetRide(
+public class RideQueries(
     IRideRepository rideRepository,
     IPositionRepository positionRepository,
     IAccountGateway accountGateway)
-    : IUseCase<Guid, Task<RideDto>>
+    : IRideQueries
 {
-    public async Task<RideDto> Execute(Guid request)
+    public async Task<RideView> GetRide(Guid rideId)
     {
-        var ride = await rideRepository.GetRideById(request);
+        var ride = await rideRepository.GetRideById(rideId);
         var account = await accountGateway.GetAccountById(ride.PassengerId);
         var lasPosition = await positionRepository.GetLastPositionFromRideId(ride.Id);
-        return new RideDto
+        return new RideView
         {
             Id = ride.Id,
             PassengerId = ride.PassengerId,

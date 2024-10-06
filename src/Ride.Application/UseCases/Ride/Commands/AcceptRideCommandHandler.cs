@@ -1,16 +1,17 @@
-using Shared.Application;
-using Shared.DTO.Ride;
+using MediatR;
 using Ride.Application.Gateways;
 using Ride.Application.Repositories;
 using Microsoft.Extensions.Logging;
 using Ride.Application.IntegrationEvents;
 using Ride.Application.IntegrationEvents.Events;
 
-namespace Ride.Application.UseCases.Ride;
+namespace Ride.Application.UseCases.Ride.Commands;
 
-public class AcceptRide(IRideRepository rideRepository, IAccountGateway accountGateway, ILogger<AcceptRide> logger, IRideIntegrationEventService rideIntegrationEventService) : IUseCase<AcceptRideDto, Task<Guid?>>
+public class AcceptRideCommandHandler(IRideRepository rideRepository, IAccountGateway accountGateway, 
+    ILogger<AcceptRideCommandHandler> logger, IRideIntegrationEventService rideIntegrationEventService) 
+    : IRequestHandler<AcceptRideCommand, Guid?>
 {
-    public async Task<Guid?> Execute(AcceptRideDto request)
+    public async Task<Guid?> Handle(AcceptRideCommand request, CancellationToken cancellationToken)
     {
         var hasActiveDriver = await rideRepository.HasActiveRideByDriverId(request.DriverId);
         if (hasActiveDriver)

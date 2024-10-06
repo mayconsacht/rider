@@ -1,16 +1,15 @@
-using Shared.Application;
-using Shared.DTO.Ride;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using Ride.Application.Gateways;
 using Ride.Application.IntegrationEvents;
 using Ride.Application.IntegrationEvents.Events;
 using Ride.Application.Repositories;
 
-namespace Ride.Application.UseCases.Ride;
+namespace Ride.Application.UseCases.Ride.Commands;
 
-public class RequestRide(IAccountGateway accountGateway, IRideRepository rideRepository, ILogger<RequestRide> logger, IRideIntegrationEventService rideIntegrationEventService) : IUseCase<RequestRideDto, Task<Guid?>>
+public class RequestRideCommandHandler(IAccountGateway accountGateway, IRideRepository rideRepository, ILogger<RequestRideCommandHandler> logger, IRideIntegrationEventService rideIntegrationEventService) : IRequestHandler<RequestRideCommand, Guid?>
 {
-    public async Task<Guid?> Execute(RequestRideDto request)
+    public async Task<Guid?> Handle(RequestRideCommand request, CancellationToken cancellationToken)
     {
         var account = await accountGateway.GetAccountById(request.PassengerId);
         if (account is not null && !account.IsPassenger)

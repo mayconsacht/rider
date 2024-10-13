@@ -19,13 +19,9 @@ public class Transaction : Entity
     Status = status;
   }
 
-  public void Create(Guid rideId, double amount)
+  public static Transaction Create(Guid rideId, double amount)
   {
-    Id = Guid.NewGuid();
-    RideId = rideId;
-    Amount = amount;
-    Date = DateTime.Now;
-    Status = TransactionStatus.WaitingPayment;
+    return new Transaction(Guid.NewGuid(), rideId, amount, DateTime.Now, TransactionStatus.WaitingPayment);
   }
 
   public void Pay()

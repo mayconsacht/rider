@@ -4,5 +4,6 @@ public enum TransactionStatus
 {
   Unknown = 0,
   WaitingPayment = 1,
-  Paid = 2
+  Approved = 2,
+  Paid = 3
 }

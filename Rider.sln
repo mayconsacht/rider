@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus", "src\EventBus\Ev
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBusRabbitMQ", "src\EventBusRabbitMQ\EventBusRabbitMQ.csproj", "{6E5927C3-DB80-4175-9472-04A2536DBA5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Domain", "Payment.Domain\Payment.Domain.csproj", "{56A0CCE6-537D-4A06-83C8-A8401A09407B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,5 +95,9 @@ Global
 		{6E5927C3-DB80-4175-9472-04A2536DBA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E5927C3-DB80-4175-9472-04A2536DBA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E5927C3-DB80-4175-9472-04A2536DBA5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56A0CCE6-537D-4A06-83C8-A8401A09407B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56A0CCE6-537D-4A06-83C8-A8401A09407B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56A0CCE6-537D-4A06-83C8-A8401A09407B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56A0CCE6-537D-4A06-83C8-A8401A09407B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
